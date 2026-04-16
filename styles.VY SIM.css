@@ -1,0 +1,692 @@
+/* =============================================
+   Santi-Move — Simulador de movilidad urbana
+   Santiago de los Caballeros, RD
+   styles.css
+   ============================================= */
+
+:root {
+  --color-background-primary: #0f1117;
+  --color-background-secondary: #1a1d27;
+  --color-background-tertiary: #22263a;
+  --color-text-primary: #e8eaf2;
+  --color-text-secondary: #8b91a8;
+  --color-text-tertiary: #555d7a;
+  --color-border-primary: #2e3350;
+  --color-border-secondary: #2e3350;
+  --color-border-tertiary: #232740;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --border-radius-lg: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: #0f1117;
+}
+
+/* ── Shell / Layout ── */
+.shell {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  min-height: 600px;
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--color-background-primary);
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  background: var(--color-background-secondary);
+  border-right: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #0f6e56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+.brand-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #0d2e26;
+  color: #4ecba5;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+
+.badge-live::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1D9E75;
+  display: inline-block;
+}
+
+.sidebar-body {
+  padding: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Form fields ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.field-label span {
+  color: #0f6e56;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+select,
+input[type=text] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 8px;
+  font-size: 13px;
+  background: #1a1d27;
+  color: var(--color-text-primary);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+select option {
+  background: #1a1d27;
+  color: #e8eaf2;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #1D9E75;
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--color-text-secondary);
+  pointer-events: none;
+}
+
+/* ── Swap button ── */
+.swap-btn {
+  align-self: center;
+  width: 28px;
+  height: 28px;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 50%;
+  background: var(--color-background-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.swap-btn:active {
+  background: var(--color-background-secondary);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 0.5px;
+  background: var(--color-border-tertiary);
+}
+
+/* ── Mode cards ── */
+.mode-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.mode-card {
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 8px;
+  padding: 8px 4px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--color-background-primary);
+  transition: border-color 0.15s;
+}
+
+.mode-card.active {
+  border-color: #1D9E75;
+  background: #0d2e26;
+}
+
+.mode-card.active .mode-icon {
+  color: #1D9E75;
+}
+
+.mode-card.active .mode-name {
+  color: #4ecba5;
+}
+
+.mode-icon {
+  font-size: 16px;
+  margin-bottom: 3px;
+  color: var(--color-text-secondary);
+}
+
+.mode-name {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  line-height: 1.3;
+}
+
+/* ── Checkboxes ── */
+.checks-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.check-row:hover {
+  background: var(--color-background-tertiary);
+}
+
+.check-box {
+  width: 15px;
+  height: 15px;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 3px;
+  background: var(--color-background-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.check-box.checked {
+  background: #0f6e56;
+  border-color: #0f6e56;
+}
+
+.check-box.checked::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 5px;
+  border-left: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+.check-text {
+  font-size: 12px;
+  color: var(--color-text-primary);
+}
+
+/* ── Search button ── */
+.btn-search {
+  width: 100%;
+  padding: 10px;
+  background: #0f6e56;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.btn-search:active {
+  opacity: 0.88;
+}
+
+/* ── Main panel ── */
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-strip {
+  background: #2a1f0d;
+  border-bottom: 0.5px solid #5a3a08;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: #d4a044;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alert-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #BA7517;
+  flex-shrink: 0;
+}
+
+/* ── Map area ── */
+.map-area {
+  flex: 1;
+  background: #1a2335;
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+}
+
+.map-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Map legend ── */
+.legend {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.leg-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.leg-line {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* ── Results area ── */
+.results-area {
+  padding: 14px;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Stats row ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.stat-card {
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 10px 10px 8px;
+  text-align: center;
+}
+
+.stat-val {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.stat-unit {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-top: 3px;
+}
+
+/* ── Route panel ── */
+.route-panel {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.route-panel-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+}
+
+.step-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.step-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-vline {
+  width: 1px;
+  background: var(--color-border-tertiary);
+  flex: 1;
+  min-height: 14px;
+}
+
+.step-body {
+  flex: 1;
+  padding-bottom: 12px;
+}
+
+.step-text {
+  font-size: 12px;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.step-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* ── CO2 block ── */
+.co2-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.co2-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.co2-title {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.co2-value {
+  font-size: 12px;
+  font-weight: 500;
+  color: #4ecba5;
+}
+
+.track {
+  height: 6px;
+  background: var(--color-background-secondary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #1D9E75;
+  border-radius: 3px;
+  transition: width 0.7s ease;
+}
+
+/* ── EduVial block ── */
+.edu-block {
+  background: #0d2e26;
+  border: 0.5px solid #1a5a45;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.edu-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1D9E75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.edu-icon svg {
+  width: 11px;
+  height: 11px;
+  fill: white;
+}
+
+.edu-text {
+  font-size: 12px;
+  color: #4ecba5;
+  line-height: 1.6;
+}
+
+/* ── Incident grid ── */
+.incident-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.inc-btn {
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 8px;
+  padding: 8px 4px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--color-background-primary);
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.inc-btn:active {
+  background: var(--color-background-secondary);
+}
+
+.inc-icon {
+  font-size: 14px;
+  margin-bottom: 3px;
+  display: block;
+}
+
+/* ── Toast ── */
+.toast-bar {
+  background: #085041;
+  color: white;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin-top: 2px;
+}
+
+.toast-bar.show {
+  opacity: 1;
+}
+
+/* ── Placeholder ── */
+.placeholder-msg {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  color: var(--color-text-tertiary);
+}
+
+.placeholder-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-background-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--color-text-tertiary);
+}
+
+.placeholder-msg p {
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Horario panel ── */
+.horario-panel {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.horario-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+.horario-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  font-size: 12px;
+}
+
+.horario-row:last-child {
+  border-bottom: none;
+}
+
+.horario-est {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.horario-info {
+  color: var(--color-text-secondary);
+}
